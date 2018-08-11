@@ -7,6 +7,7 @@ ENV INSTALLATION_DIR /usr/local/bin/${APPLICATION_NAME}
 ENV CONFIG_DIR /etc/${APPLICATION_NAME}
 
 RUN pip install pychef==0.3.0 && \
+    pip install psycopg2==2.7.5 && \
     mkdir -p ${INSTALLATION_DIR} && \
 	mkdir -p ${CONFIG_DIR}
 	
