@@ -1,0 +1,122 @@
+{
+	"dbName": "cmdbuild-sync",
+	"dbUser": "postgres",
+	"dbPassword": "postgres",
+	"dbHost": "localhost",
+	"tableName": "ChefImport",
+	"chefURL": "https://chef-api.aim.goip.de",
+	"chefKey": "cmdbuild-sync.pem",
+	"chefUser": "brunovetter",
+	"chefOrganization": "aim",
+	"chefSSLVerify": false,
+	"column": [
+		{
+			"name": "NodeName",
+			"dataType": "varchar(50)",
+			"chefObject": "node",
+			"chefPath": "name"
+		},
+		{
+			"name": "ChefEnvironment",
+			"dataType": "varchar(50)",
+			"chefObject": "node",
+			"chefPath": "chef_environment"
+		},
+		{
+			"name": "CPU0ModelName",
+			"dataType": "varchar(50)",
+			"chefObject": "node",
+			"chefPath": "automatic.cpu.0.model_name"
+		},
+		{
+			"name": "FSRootPercentUsed",
+			"dataType": "varchar(5)",
+			"chefObject": "node",
+			"chefPath": "automatic.filesystem.by_mountpoint./.percent_used"
+		},
+		{
+			"name": "FSRootInodesPercentUsed",
+			"dataType": "varchar(5)",
+			"chefObject": "node",
+			"chefPath": "automatic.filesystem.by_mountpoint./.inodes_percent_used"
+		},
+		{
+			"name": "FSSDPercentUsed",
+			"dataType": "varchar(5)",
+			"chefObject": "node",
+			"chefPath": "automatic.filesystem.by_mountpoint./media/sd.percent_used"
+		},
+		{
+			"name": "FSSDInodesPercentUsed",
+			"dataType": "varchar(5)",
+			"chefObject": "node",
+			"chefPath": "automatic.filesystem.by_mountpoint./media/sd.inodes_percent_used"
+		},
+		{
+			"name": "KernelRelease",
+			"dataType": "varchar(50)",
+			"chefObject": "node",
+			"chefPath": "automatic.kernel.release"
+		},
+		{
+			"name": "OSDescription",
+			"dataType": "varchar(100)",
+			"chefObject": "node",
+			"chefPath": "automatic.lsb.description"
+		},
+		{
+			"name": "OhaiTime",
+			"dataType": "decimal(18, 6)",
+			"chefObject": "node",
+			"chefPath": "automatic.ohai_time"
+		},
+		{
+			"name": "FQDN",
+			"dataType": "varchar(100)",
+			"chefObject": "node",
+			"chefPath": "automatic.fqdn"
+		},
+		{
+			"name": "Uptime",
+			"dataType": "varchar(50)",
+			"chefObject": "node",
+			"chefPath": "automatic.uptime"
+		},
+		{
+			"name": "ChefVersion",
+			"dataType": "varchar(50)",
+			"chefObject": "node",
+			"chefPath": "automatic.chef_packages.chef.version"
+		},
+		{
+			"name": "Timezone",
+			"dataType": "varchar(50)",
+			"chefObject": "node",
+			"chefPath": "automatic.time.timezone"
+		},
+		{
+			"name": "RootSSHKey",
+			"dataType": "varchar(500)",
+			"chefObject": "node",
+			"chefPath": "automatic.i4i.root_ssh_key"
+		},
+		{
+			"name": "ReverseTunnelPort",
+			"dataType": "integer",
+			"chefObject": "node",
+			"chefPath": "normal.i4i.reverse_tunnel_port"
+		},
+		{
+			"name": "ChefClientPublicKey",
+			"dataType": "varchar(500)",
+			"chefObject": "client",
+			"chefPath": "public_key"
+		},
+		{
+			"name": "ChefClientPublicKeyExpDate",
+			"dataType": "varchar(50)",
+			"chefObject": "client",
+			"chefPath": "expiration_date"
+		}
+	]
+}
