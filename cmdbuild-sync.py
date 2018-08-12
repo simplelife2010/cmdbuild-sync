@@ -3,6 +3,7 @@ import inspect
 import psycopg2
 import json
 import os
+import urllib3
 
 def appName():
 	return os.path.basename(__file__).split(".")[0]
@@ -16,7 +17,7 @@ def connect(conf):
 	cs += conf["dbPassword"]
 	cs += " host="
 	cs += conf["dbHost"]
-	print("Connecting to database (" + cs + ")...")
+	print("Connecting to database...")
 	conn = psycopg2.connect(cs)
 	conn.set_session(autocommit=False)
 	print("Connecting to database...Done.")
@@ -31,6 +32,8 @@ def createImportTable(cur, conf):
 		cs += column["name"]
 		cs += "\" "
 		cs += column["dataType"]
+		if column.get("primaryKey", False):
+			cs += " primary key"
 		cs += ", "
 	cs = cs[0:-2]
 	cs += ");"
@@ -127,8 +130,8 @@ def insertRow(cur, row, conf):
 	ig += ") VALUES ("
 	ig += vals
 	ig += ");"
-	print(ig)
 	cur.execute(ig)
+	print("Inserted row for node " + row["NodeName"] + ".")
 	
 def fillImportTable(cur, conf):
 	print("Filling import table...");
@@ -142,6 +145,8 @@ def fillImportTable(cur, conf):
 		insertRow(cur, r, conf)
 	print("Filling import table...Done.")
 
+print("Starting " + appName() + ".")
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 configFileName = appName() + ".json"
 conf = config(configFileName)
 conn = connect(conf)
@@ -149,7 +154,8 @@ cur = conn.cursor()
 dropImportTable(cur, conf)
 createImportTable(cur, conf)
 fillImportTable(cur, conf)
-print("Committing and closing connection...")
+print("Committing and closing database connection...")
 conn.commit()
 conn.close()
-print("Committing and closing connection...Done.")
+print("Committing and closing database connection...Done.")
+print(appName() + " finished successfully.")

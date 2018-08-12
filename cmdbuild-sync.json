@@ -14,7 +14,8 @@
 			"name": "NodeName",
 			"dataType": "varchar(50)",
 			"chefObject": "node",
-			"chefPath": "name"
+			"chefPath": "name",
+			"primaryKey": true
 		},
 		{
 			"name": "ChefEnvironment",
